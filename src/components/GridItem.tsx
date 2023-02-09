@@ -3,12 +3,13 @@ import styles from "./GridItem.module.css";
 
 interface IGridItemProps {
   value: number;
+  displayDelay: number;
 }
 
-export const GridItem: FunctionComponent<IGridItemProps> = ({ value }) => {
+export const GridItem: FunctionComponent<IGridItemProps> = ({ value, displayDelay }) => {
   return (
-    <div className={styles.gridItem}>
+    <button className={styles.gridItem} style={{ animationDelay: `${displayDelay}s` }}>
       { value }
-    </div>
+    </button>
   );
 }
