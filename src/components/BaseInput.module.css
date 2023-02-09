@@ -1,0 +1,14 @@
+.baseInputContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.baseInputLabel {
+  font-weight: bold;
+}
+
+.baseInput {
+  padding: 0.25rem;
+  border: #94a3b8 1px solid;
+  border-radius: 0.125rem;
+}

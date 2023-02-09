@@ -1,0 +1,16 @@
+.inputContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.gridContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.widthInput {
+  margin-right: 0.25rem;
+}
