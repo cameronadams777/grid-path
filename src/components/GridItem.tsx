@@ -7,8 +7,8 @@ interface IGridItemProps {
 
 export const GridItem: FunctionComponent<IGridItemProps> = ({ value }) => {
   return (
-    <button className={styles.gridItem}>
+    <div className={styles.gridItem}>
       { value }
-    </button>
+    </div>
   );
 }
