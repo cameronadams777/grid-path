@@ -9,7 +9,7 @@ to a particular cell in the grid.
 
 ```
 // Install node modules
-npm Install
+npm install
 
 // Run dev command
 npm run dev
