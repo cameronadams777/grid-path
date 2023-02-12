@@ -1,4 +1,5 @@
-import type { FunctionComponent } from "react";
+import { FunctionComponent, useMemo } from "react";
+import classnames from "classnames";
 import { usePathsContext } from "../state/PathsContext";
 import styles from "./GridItem.module.css";
 
@@ -10,10 +11,15 @@ interface IGridItemProps {
 }
 
 export const GridItem: FunctionComponent<IGridItemProps> = ({ displayDelay, posX, posY,  value }) => {
-  const { setSelectedPoint } = usePathsContext();
+  const { selectedPoint, setSelectedPoint } = usePathsContext();
+
+  const isSelected = useMemo(() => 
+    selectedPoint?.x === posX && selectedPoint?.y === posY
+  ,[selectedPoint]);
+
   return (
     <button 
-      className={styles.gridItem} 
+      className={classnames(styles.gridItem, isSelected ? styles.activeGridItem : undefined)} 
       style={{ animationDelay: `${displayDelay}s` }}
       onClick={() => setSelectedPoint({ x: posX, y: posY })}
     >

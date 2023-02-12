@@ -1,7 +1,8 @@
-import { FunctionComponent, useMemo } from "react";
+import { FunctionComponent, useEffect, useMemo } from "react";
 import { GridItem } from "./GridItem";
 import { createGridWithPaths } from "../helpers";
 import styles from "./Grid.module.css";
+import { usePathsContext } from "../state/PathsContext";
 
 interface IGridProps {
   width: number;
@@ -9,12 +10,10 @@ interface IGridProps {
 }
 
 export const Grid: FunctionComponent<IGridProps> = ({ width, height }) => { 
-  const gridElements = useMemo(() => {
-    if(!width || !height) return [];
-    const grid = createGridWithPaths(width, height);
-    const items = grid.map((_item, indexHeight) => {
-      return grid[indexHeight].map((_item, indexWidth) => {
-        return (
+  const { grid, setGrid } = usePathsContext();
+
+  const gridElements = useMemo(() => grid.map((_item, indexHeight) => grid[indexHeight]
+    .map((_item, indexWidth) => (
           <GridItem
             posX={indexWidth}
             posY={indexHeight}
@@ -22,17 +21,20 @@ export const Grid: FunctionComponent<IGridProps> = ({ width, height }) => {
             displayDelay={((indexHeight * grid[indexHeight].length) + indexWidth) * 0.25}
             key={`${indexHeight}_${indexWidth}`}
           />
-        );
-      });
-    });
-    return items;
-  }, [width, height]);
+        )
+      )
+    ), [grid]);
 
   const columns = useMemo(() => {
     if(!width) return "auto";
     return new Array(width).fill("auto").join(" ")
   }, [width]);
-  
+
+  useEffect(() => {
+    if(!width || !height) return;
+    setGrid(createGridWithPaths(width, height));
+  }, [width, height]);
+
   return (
     <div className={styles.grid} style={{ gridTemplateColumns: columns }}>
       {gridElements}
