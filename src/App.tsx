@@ -1,13 +1,14 @@
-import { ChangeEvent, Fragment, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Grid } from "./components/Grid";
 import { BaseInput } from "./components/BaseInput";
 import styles from  "./App.module.css";
+import { PathsProvider } from "./state/PathsContext";
 
 function App() {
   const [width, setWidth] = useState<number>(3);
   const [height, setHeight] = useState<number>(3);
   return (
-    <Fragment>
+    <PathsProvider>
       <div className={styles.inputContainer}>
         <BaseInput
           id="width"
@@ -28,7 +29,7 @@ function App() {
       <div className={styles.gridContainer}>
         <Grid width={width} height={height}/>
       </div>
-    </Fragment>
+    </PathsProvider>
   )
 }
 

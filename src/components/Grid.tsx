@@ -15,7 +15,9 @@ export const Grid: FunctionComponent<IGridProps> = ({ width, height }) => {
     const items = grid.map((_item, indexHeight) => {
       return grid[indexHeight].map((_item, indexWidth) => {
         return (
-          <GridItem 
+          <GridItem
+            posX={indexWidth}
+            posY={indexHeight}
             value={grid[indexHeight][indexWidth]} 
             displayDelay={((indexHeight * grid[indexHeight].length) + indexWidth) * 0.25}
             key={`${indexHeight}_${indexWidth}`}
